@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset=" UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+
+    <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+
+<body>
+        <div th:replace="base :: navlinks"></div>
+        <div class="container bg">
+
+            <h2> Welcome, Add custome Here,</h2>
+            <form class="form-horizontal" action="#" th:action="@{/processcustomer}"
+                  th:object="${customer}"  method="post">
+
+                <input type="hidden" th:field="*{id}" class="form-control input-md" required=""/><br/>
+
+                Title<input type="text" th:field="*{title}" class="form-control input-md" required=""/>
+                <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span><br/>
+
+                First Name<input type="text" th:field="*{firstname}" class="form-control input-md" required=""/>
+                <span th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></span><br/>
+
+                Last Name<input type="text" th:field="*{lastname}" class="form-control input-md" required=""/>
+                <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></span><br/>
+
+                Street Address<input type="text" th:field="*{streetaddress}" class="form-control input-md" required=""/>
+                <span th:if="${#fields.hasErrors('streetaddress')}" th:errors="*{streetaddress}"></span><br/>
+
+                City<input type="text" th:field="*{city}" class="form-control input-md" required=""/>
+                <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span><br/>
+
+                State<input type="text" th:field="*{state}" class="form-control input-md" required=""/>
+                <span th:if="${#fields.hasErrors('state')}" th:errors="*{state}"></span><br/>
+
+                Zipcode<input type="text" th:field="*{zipcode}" class="form-control input-md" required=""/>
+                <span th:if="${#fields.hasErrors('zipcode')}" th:errors="*{zipcode}"></span><br/>
+
+                Email <input type="text" th:field="*{emailaddress}" class="form-control input-md" required=""/>
+                <span th:if="${#fields.hasErrors('emailaddress')}" th:errors="*{emailaddress}"></span><br/>
+
+                Position <input type="text" th:field="*{position}" class="form-control input-md" required=""/>
+                <span th:if="${#fields.hasErrors('position')}" th:errors="*{position}"></span><br/>
+
+                Company:  <select th:field="*{companya}" class="form-control input-md">
+
+                <table>
+                    <tr th:each="opt: ${options}">
+                        <option th:value="${opt.id}">[[${opt.company}]]</option>
+                    </tr>
+                </table>
+            </select>
+
+           <br/>
+                <button id="submit" name="submit" class="btn btn-success">Submit</button>
+
+
+            </form>
+
+
+            <div th:replace="base :: footer"></div>
+        </div>
+</body>
+</html>>
